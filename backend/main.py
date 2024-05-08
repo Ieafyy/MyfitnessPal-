@@ -42,40 +42,45 @@ def getData():
               index += 1
 
   for refeicao in meals_data:
-    
-    for tr_tag in meals_data[refeicao]:
-      item = tr_tag.find('td', class_='first alt').text.strip()
-      calories = int(tr_tag.find_all('td')[1].text)
-      carbs_value = int(tr_tag.find_all('span', class_='macro-value')[0].text)
-      carbs_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[0].text)
-      protein_value = int(tr_tag.find_all('span', class_='macro-value')[1].text)
-      protein_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[1].text)
-      fat_value = int(tr_tag.find_all('span', class_='macro-value')[2].text)
-      fat_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[2].text)
-      fiber = int(tr_tag.find_all('td')[5].text)
-      sugar = int(tr_tag.find_all('td')[6].text)
+      total_calorias_refeicao = 0
+      for tr_tag in meals_data[refeicao]:
+          item = tr_tag.find('td', class_='first alt').text.strip()
+          calories = int(tr_tag.find_all('td')[1].text)
+          total_calorias_refeicao += calories  # Somar as calorias de cada item
+          carbs_value = int(tr_tag.find_all('span', class_='macro-value')[0].text)
+          carbs_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[0].text)
+          protein_value = int(tr_tag.find_all('span', class_='macro-value')[1].text)
+          protein_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[1].text)
+          fat_value = int(tr_tag.find_all('span', class_='macro-value')[2].text)
+          fat_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[2].text)
+          fiber = int(tr_tag.find_all('td')[5].text)
+          sugar = int(tr_tag.find_all('td')[6].text)
 
-      dados = {
-          'item': item,
-          'calories': calories,
-          'carbs': {
-              'value': carbs_value,
-              'percentage': carbs_percentage
-          },
-          'protein': {
-              'value': protein_value,
-              'percentage': protein_percentage
-          },
-          'fat': {
-              'value': fat_value,
-              'percentage': fat_percentage
-          },
-          'fiber': fiber,
-          'sugar': sugar
-      }
+          dados = {
+              'item': item,
+              'calories': calories,
+              'carbs': {
+                  'value': carbs_value,
+                  'percentage': carbs_percentage
+              },
+              'protein': {
+                  'value': protein_value,
+                  'percentage': protein_percentage
+              },
+              'fat': {
+                  'value': fat_value,
+                  'percentage': fat_percentage
+              },
+              'fiber': fiber,
+              'sugar': sugar
+          }
 
-      meals_json[refeicao].append(dados)
+          meals_json[refeicao].append(dados)
 
+      meals_json[refeicao].append({'total_calories': total_calorias_refeicao})
+
+  total_calorias_geral = sum(total_calorias_refeicao for total_calorias_refeicao in (sum(item['calories'] for item in meals_json[refeicao] if 'total_calories' not in item) for refeicao in meals_json))
+  meals_json['total_calories'] = total_calorias_geral
   json_meals = json.dumps(meals_json, indent=4)
   print(json_meals)
   print('ENVIADO PARA O CLIENT!')
