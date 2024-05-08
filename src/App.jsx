@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FoodTable from "./comps/FoodTable";
 import LoginModal from "./comps/LoginModal";
 function App() {
