@@ -34,9 +34,7 @@ function App() {
 
   return (
     <div className="font-montserrat grid">
-      <h1 className="text-center text-7xl font-semibold mt-10">
-        MyfitnessPal++
-      </h1>
+      <h1 className="text-center text-7xl font-bold mt-10">MyfitnessPal++</h1>
       <p className="mt-10 text-center text-2xl">
         Traga seus dados do MyfitnessPal para visualiza-los e ter mais insights
       </p>
