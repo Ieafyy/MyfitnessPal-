@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FoodTable from "./comps/FoodTable";
 import LoginModal from "./comps/LoginModal";
+import { AnimatePresence, motion } from "framer-motion";
 function App() {
   const [username, setUsername] = useState("");
   const [mealsData, setMealsData] = useState(null);
@@ -38,22 +39,33 @@ function App() {
       <p className="mt-10 text-center text-2xl">
         Traga seus dados do MyfitnessPal para visualiza-los e ter mais insights
       </p>
-      <button
+      <motion.button
         onClick={() => setModalShow(true)}
         className="mt-10 place-self-center border-2 border-black px-24 py-4 rounded-full font-bold text-2xl text-center"
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.2 }}
       >
         Puxar os dados!
-      </button>
-      {(modalShow || loading) && (
-        <LoginModal
-          username={username}
-          setUsername={setUsername}
-          setModalShow={setModalShow}
-          onConfirmBtn={handleRequest}
-          load={loading}
-          date={date}
-        />
-      )}
+      </motion.button>
+      <AnimatePresence>
+        {(modalShow || loading) && (
+          <motion.div
+            initial={{ y: -100 }}
+            whileInView={{ y: 100 }}
+            exit={{ y: -100, opacity: 0 }}
+            className="z-20"
+          >
+            <LoginModal
+              username={username}
+              setUsername={setUsername}
+              setModalShow={setModalShow}
+              onConfirmBtn={handleRequest}
+              load={loading}
+              date={date}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
       {mealsData && (
         <div className="flex text-2xl place-self-center mt-24 gap-10">
           <p className="font-bold text-4xl">Data: </p>
