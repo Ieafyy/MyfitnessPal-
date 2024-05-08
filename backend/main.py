@@ -46,7 +46,7 @@ def getData():
       for tr_tag in meals_data[refeicao]:
           item = tr_tag.find('td', class_='first alt').text.strip()
           calories = int(tr_tag.find_all('td')[1].text)
-          total_calorias_refeicao += calories  # Somar as calorias de cada item
+          total_calorias_refeicao += calories 
           carbs_value = int(tr_tag.find_all('span', class_='macro-value')[0].text)
           carbs_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[0].text)
           protein_value = int(tr_tag.find_all('span', class_='macro-value')[1].text)
