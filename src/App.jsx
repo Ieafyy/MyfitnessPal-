@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FoodTable from "./comps/FoodTable";
 import LoginModal from "./comps/LoginModal";
 function App() {
   const [username, setUsername] = useState("");
   const [mealsData, setMealsData] = useState(null);
   const [modalShow, setModalShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const today = new Date();
+  const todayDate = `${today.getFullYear()}-${
+    today.getMonth() > 9 ? today.getMonth() + 1 : "0" + (today.getMonth() + 1)
+  }-${today.getDate() > 9 ? today.getDate() : "0" + today.getDate()}`;
+
+  const [date, setDate] = useState(todayDate);
+
+  useEffect(() => {
+    if (mealsData) {
+      handleRequest();
+    }
+  }, [date]);
 
   const handleRequest = async () => {
-    let url = "http://127.0.0.1:5000/getdata?userid=" + username;
+    setLoading(true);
+    let url =
+      "http://127.0.0.1:5000/getdata?userid=" + username + "&date=" + date;
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setMealsData(data);
+        setLoading(false);
       });
   };
 
@@ -29,15 +46,27 @@ function App() {
       >
         Puxar os dados!
       </button>
-      {modalShow && (
+      {(modalShow || loading) && (
         <LoginModal
           username={username}
           setUsername={setUsername}
           setModalShow={setModalShow}
           onConfirmBtn={handleRequest}
+          load={loading}
+          date={date}
         />
       )}
-
+      {mealsData && (
+        <div className="flex text-2xl place-self-center mt-24 gap-10">
+          <p className="font-bold text-4xl">Data: </p>
+          <input
+            type="date"
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
+            className=" border-b-2 border-black"
+          />
+        </div>
+      )}
       <FoodTable mealsData={mealsData} />
     </div>
   );

@@ -4,7 +4,7 @@ const FoodTable = ({ mealsData }) => {
   return (
     <>
       {mealsData ? (
-        <div className="my-20 text-xl">
+        <div className="my-10 text-xl">
           <p className="text-4xl font-bold mb-5 sticky top-0 mx-0 bg-white py-10 border-b-4 px-10">
             Calorias Totais do dia: {mealsData.total_calories} Kcal
           </p>
