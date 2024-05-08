@@ -82,7 +82,6 @@ def getData():
   total_calorias_geral = sum(total_calorias_refeicao for total_calorias_refeicao in (sum(item['calories'] for item in meals_json[refeicao] if 'total_calories' not in item) for refeicao in meals_json))
   meals_json['total_calories'] = total_calorias_geral
   json_meals = json.dumps(meals_json, indent=4)
-  print(json_meals)
   print('ENVIADO PARA O CLIENT!')
   return json_meals
 
