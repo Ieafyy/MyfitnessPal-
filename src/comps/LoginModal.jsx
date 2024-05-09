@@ -28,7 +28,7 @@ const LoginModal = ({
             type="text"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
-            className="border-2 border-black text-2xl rounded-md px-2 w-8/12 "
+            className="border-2 border-black text-2xl text-black rounded-md px-2 w-8/12 "
             autoFocus
             onKeyDown={(e) => {
               if (e.code == "Enter") {

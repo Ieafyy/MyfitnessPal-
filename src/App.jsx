@@ -3,6 +3,7 @@ import FoodTable from "./comps/FoodTable";
 import LoginModal from "./comps/LoginModal";
 import { AnimatePresence, motion } from "framer-motion";
 import FoodHeader from "./comps/FoodHeader";
+import Footer from "./comps/Footer";
 function App() {
   const [username, setUsername] = useState("");
   const [mealsData, setMealsData] = useState(null);
@@ -80,7 +81,7 @@ function App() {
             type="date"
             value={date}
             onChange={(event) => setDate(event.target.value)}
-            className=" border-b-2 border-black"
+            className=" hover:border-b-2 border-white bg-transparent"
           />
         </div>
       )}
