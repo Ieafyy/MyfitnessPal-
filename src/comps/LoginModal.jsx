@@ -28,7 +28,7 @@ const LoginModal = ({
             type="text"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
-            className="border-2 border-black text-2xl text-black rounded-md px-2 w-8/12 "
+            className="border-2 border-black text-2xl text-black bg-white rounded-md px-2 w-8/12 "
             autoFocus
             onKeyDown={(e) => {
               if (e.code == "Enter") {
@@ -46,6 +46,7 @@ const LoginModal = ({
         </div>
       ) : (
         <div className="p-10 flex fixed flex-col bg-gray-300 rounded-xl items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+          <span className="loading loading-dots loading-lg mb-5"></span>
           <p className="text-3xl mb-5 font-bold">{`${date.split("-")[2]}/${
             date.split("-")[1]
           }/${date.split("-")[0]}`}</p>
