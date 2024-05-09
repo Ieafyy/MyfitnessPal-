@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
+    "chart.js": "^4.4.2",
     "framer-motion": "^11.1.9",
     "googleapis": "^136.0.0",
     "mfp": "^0.7.0",

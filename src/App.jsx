@@ -4,6 +4,7 @@ import LoginModal from "./comps/LoginModal";
 import { AnimatePresence, motion } from "framer-motion";
 import FoodHeader from "./comps/FoodHeader";
 import Footer from "./comps/Footer";
+import FoodGraph from "./comps/FoodGraph";
 function App() {
   const [username, setUsername] = useState("");
   const [mealsData, setMealsData] = useState(null);
@@ -86,8 +87,9 @@ function App() {
         </div>
       )}
       {mealsData && (
-        <div>
+        <div className="flex flex-col">
           <FoodHeader mealsData={mealsData} />
+          <FoodGraph mealsData={mealsData} />
           <div className="flex">
             <FoodTable mealsData={mealsData} />
           </div>
