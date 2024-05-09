@@ -81,7 +81,7 @@ function App() {
             type="date"
             value={date}
             onChange={(event) => setDate(event.target.value)}
-            className=" hover:border-b-2 border-white bg-transparent"
+            className="border-b-2 border-slate-900 bg-transparent"
           />
         </div>
       )}
