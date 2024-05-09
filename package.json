@@ -15,7 +15,8 @@
     "googleapis": "^136.0.0",
     "mfp": "^0.7.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "recharts": "^2.12.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

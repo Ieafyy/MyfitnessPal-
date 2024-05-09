@@ -1,22 +1,8 @@
-import React from "react";
-
 const FoodTable = ({ mealsData }) => {
   return (
-    <>
+    <div className="w-full">
       {mealsData ? (
-        <div className="my-10 text-xl">
-          <p
-            className={`text-4xl font-bold mb-5 sticky top-0 mx-0 bg-white py-10 border-b-4 px-10 ${
-              mealsData.total_calories <
-              Number(mealsData.total_calories_needed.replace(",", ""))
-                ? "bg-green-400"
-                : "bg-red-400"
-            }`}
-          >
-            Calorias Totais do dia: {mealsData.total_calories} Kcal / Calorias
-            necessárias do dia:{" "}
-            {Number(mealsData.total_calories_needed.replace(",", ""))} Kcal
-          </p>
+        <div className="my-10 text-xl ">
           <div className="mx-10 grid grid-cols-1 gap-10 mt-10">
             <div className="w-1/2">
               <h2 className="text-3xl mb-5 font-semibold border-b-4 pb-5">
@@ -88,7 +74,7 @@ const FoodTable = ({ mealsData }) => {
           </div>
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 

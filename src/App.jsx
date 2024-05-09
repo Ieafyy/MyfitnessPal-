@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import FoodTable from "./comps/FoodTable";
 import LoginModal from "./comps/LoginModal";
 import { AnimatePresence, motion } from "framer-motion";
+import FoodHeader from "./comps/FoodHeader";
 function App() {
   const [username, setUsername] = useState("");
   const [mealsData, setMealsData] = useState(null);
@@ -83,7 +84,14 @@ function App() {
           />
         </div>
       )}
-      {mealsData && <FoodTable mealsData={mealsData} />}
+      {mealsData && (
+        <div>
+          <FoodHeader mealsData={mealsData} />
+          <div className="flex">
+            <FoodTable mealsData={mealsData} />
+          </div>
+        </div>
+      )}
       {!mealsData && notFirstTime && (
         <div>
           <p className="text-center text-5xl font-bold mt-10">
