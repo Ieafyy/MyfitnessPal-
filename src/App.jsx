@@ -7,6 +7,7 @@ function App() {
   const [mealsData, setMealsData] = useState(null);
   const [modalShow, setModalShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [notFirstTime, setNotFirstTime] = useState(false);
 
   const today = new Date();
   const todayDate = `${today.getFullYear()}-${
@@ -28,7 +29,12 @@ function App() {
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setMealsData(data);
+        setNotFirstTime(true);
+        if (data?.status != "error") setMealsData(data);
+        else {
+          setDate(todayDate);
+          setMealsData(null);
+        }
         setLoading(false);
       });
   };
@@ -43,9 +49,9 @@ function App() {
         onClick={() => setModalShow(true)}
         className="mt-10 place-self-center border-2 border-black px-24 py-4 rounded-full font-bold text-2xl text-center"
         initial={{ scale: 1 }}
-        whileHover={{ scale: 1.2 }}
+        whileHover={{ scale: 1.1 }}
       >
-        Puxar os dados!
+        Buscar
       </motion.button>
       <AnimatePresence>
         {(modalShow || loading) && (
@@ -77,7 +83,17 @@ function App() {
           />
         </div>
       )}
-      <FoodTable mealsData={mealsData} />
+      {mealsData && <FoodTable mealsData={mealsData} />}
+      {!mealsData && notFirstTime && (
+        <div>
+          <p className="text-center text-5xl font-bold mt-10">
+            Erro na busca :(
+          </p>
+          <p className="text-center mt-5 text-2xl">
+            Confira se o ID de usuário está correto e tente novamente
+          </p>
+        </div>
+      )}
     </div>
   );
 }

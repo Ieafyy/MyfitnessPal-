@@ -33,6 +33,7 @@ def getData():
         }
 
         index = 0
+        total_cal_needed = soup.find_all(attrs={'class':'total alt'})[0].find_all('td')[1].text
 
         for tr_tag in meal_table.find_all('tr'):
             if index == 4:
@@ -83,12 +84,13 @@ def getData():
 
         total_calorias_geral = sum(total_calorias_refeicao for total_calorias_refeicao in (sum(item['calories'] for item in meals_json[refeicao] if 'total_calories' not in item) for refeicao in meals_json))
         meals_json['total_calories'] = total_calorias_geral
+        meals_json['total_calories_needed'] = total_cal_needed
         json_meals = json.dumps(meals_json, indent=4)
         print('ENVIADO PARA O CLIENT!')
         return json_meals
 
     except Exception as e:
         print('ERROR NO ENVIO')
-        return e
+        return {'status': 'error'}
 
 app.run(debug=True)

@@ -52,8 +52,8 @@ const LoginModal = ({
           <p className="text-2xl">
             Buscando dados de <strong className="text-3xl">{username}</strong>
           </p>
-          <p className="text-xl mt-5">
-            (Cheque se o nome digitado existe no banco do MyfitnessPal)
+          <p className="text-xl mt-5 text-center">
+            (Confira se o nome digitado existe no banco do MyfitnessPal)
           </p>
         </div>
       )}
