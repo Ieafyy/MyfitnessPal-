@@ -39,7 +39,7 @@ const LoginModal = ({
           <button
             id="submit-btn"
             onClick={() => handleClick()}
-            className="mt-10 place-self-center border-2 border-black px-24 py-4 rounded-full font-bold text-2xl text-center hover:bg-slate-500 duration-200 hover:scale-105"
+            className="mt-10 place-self-center border-2 border-black px-24 py-4 rounded-full font-bold text-2xl text-center duration-200 hover:scale-105"
           >
             Buscar
           </button>
