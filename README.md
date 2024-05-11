@@ -2,7 +2,7 @@
 
 Esse é um projeto pessoal que tem como objetivo realizar consuntas de perfis da plataforma de controle alimentar [MyfitnessPal](https://www.myfitnesspal.com/).
 
-![alt text](image.png)
+![alt text](imgs/image.png)
 
 O projeto foi desenvolvido usando as seguintes tecnologias:
 
@@ -45,26 +45,26 @@ A plataforma do myfitnessPal não possui nenhuma API pública para desenvolvedor
 
 (Importante: Para que seu usuário seja acessado é preciso definir seu _food diary_ como público, para isso vá até https://www.myfitnesspal.com/account/diary-settings e em 'Diary Sharing' marque a opção **public**)
 
-![alt text](image-1.png)
+![alt text](imgs/image-1.png)
 
 Agora basicamente o front executa uma request para o backend, que realiza o scrap dos dados com base no nome de usuário de data. O retorno é um JSON e usamos esses dados obtidos para montarmos a interface com todas as informações das refeições.
 
-![alt text](image-3.png)
-![alt text](image-4.png)
-![alt text](image-6.png)
-![alt text](image-5.png)
+![alt text](imgs/image-3.png)
+![alt text](imgs/image-4.png)
+![alt text](imgs/image-6.png)
+![alt text](imgs/image-5.png)
 
 É possível realizar essa busca passando como parâmetro o dia. Por padrão, ele irá puxar dados do dia de hoje
 
-![alt text](image-8.png)
-![alt text](image-9.png)
+![alt text](imgs/image-8.png)
+![alt text](imgs/image-9.png)
 
 (Como não há alimentos postados nesse dia, fica zerado)
 
-![alt text](image-10.png)
+![alt text](imgs/image-10.png)
 
 (Temos também essa tela de erro, quando por algum motivo o back não conseguiu encontrar os dados. Nesse caso, foi por que digitei um usuário que não existe)
 
-![alt text](image-11.png)
+![alt text](imgs/image-11.png)
 
 (Quando as calorias do dia são extrapoladas, o design muda)
