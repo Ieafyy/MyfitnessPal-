@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const easeInOut = (t) => t * t * (3 - 2 * t);
 
 const FoodGraph = ({ mealsData }) => {
   const value_percent =
@@ -7,6 +9,27 @@ const FoodGraph = ({ mealsData }) => {
     100;
 
   const [showValue, setShowValue] = useState(0);
+
+  useEffect(() => {
+    let startTime;
+    const duration = 750;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const percentage = easeInOut(Math.min(progress / duration, 1));
+      setShowValue(Math.floor(percentage * value_percent));
+      if (progress < duration) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+
+    return () => {
+      setShowValue(0);
+    };
+  }, [value_percent]);
 
   return (
     <div className="place-self-center justify-self-center z-0 my-10">
@@ -20,11 +43,7 @@ const FoodGraph = ({ mealsData }) => {
         }}
         role="progressbar"
       >
-        {(
-          mealsData.total_calories /
-          Number(mealsData.total_calories_needed.replace(",", ""))
-        ).toFixed(2) * 100}
-        %
+        {showValue.toFixed(0)}%
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup # type: ignore
 from urllib.request import urlopen, Request
 from flask import Flask, request
 import json
+import traceback
 
 app = Flask(__name__)
 
@@ -56,7 +57,7 @@ def getData():
                 protein_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[1].text)
                 fat_value = int(tr_tag.find_all('span', class_='macro-value')[2].text)
                 fat_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[2].text)
-                fiber = int(tr_tag.find_all('td')[5].text)
+                fiber = int((tr_tag.find_all('td')[5].text).replace(',', ''))
                 sugar = int(tr_tag.find_all('td')[6].text)
 
                 dados = {
@@ -90,6 +91,7 @@ def getData():
         return json_meals
 
     except Exception as e:
+        print(traceback.format_exc())
         print('ERROR NO ENVIO')
         return {'status': 'error'}
 
