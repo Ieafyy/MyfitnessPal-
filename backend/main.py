@@ -49,16 +49,16 @@ def getData():
             total_calorias_refeicao = 0
             for tr_tag in meals_data[refeicao]:
                 item = tr_tag.find('td', class_='first alt').text.strip()
-                calories = int(tr_tag.find_all('td')[1].text)
+                calories = int((tr_tag.find_all('td')[1].text).replace(',', ''))
                 total_calorias_refeicao += calories 
-                carbs_value = int(tr_tag.find_all('span', class_='macro-value')[0].text)
+                carbs_value = int(tr_tag.find_all('span', class_='macro-value')[0].text.replace(',', ''))
                 carbs_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[0].text)
-                protein_value = int(tr_tag.find_all('span', class_='macro-value')[1].text)
+                protein_value = int(tr_tag.find_all('span', class_='macro-value')[1].text.replace(',', ''))
                 protein_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[1].text)
-                fat_value = int(tr_tag.find_all('span', class_='macro-value')[2].text)
+                fat_value = int(tr_tag.find_all('span', class_='macro-value')[2].text.replace(',', ''))
                 fat_percentage = int(tr_tag.find_all('span', class_='macro-percentage')[2].text)
                 fiber = int((tr_tag.find_all('td')[5].text).replace(',', ''))
-                sugar = int(tr_tag.find_all('td')[6].text)
+                sugar = int(tr_tag.find_all('td')[6].text.replace(',', ''))
 
                 dados = {
                     'item': item,
